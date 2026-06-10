@@ -9,7 +9,6 @@ bl_info = {
     "location": "",
     "description": "レベルエディタ",
     "warning": "",
-    "support":"TESTING",
     "wiki_url": "",
     "tracker_url": "",
     "category": "Object"
@@ -50,7 +49,10 @@ def register():
 
 #アドオン無効化時コールバック
 def unregister():
-    bpy.types.TOPBAR_MT_editor_menus.remove(draw_menu_manual)
+    bpy.types.TOPBAR_MT_editor_menus.remove(TOPBAR_MT_my_menu.subemnu)
+    
+    for cls in classes:
+        bpy.utils.unreguster_class(cls)
     print("レベルエディタが無効化されました。")
     
 
