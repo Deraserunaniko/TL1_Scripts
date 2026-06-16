@@ -9,6 +9,7 @@ bl_info = {
     "location": "",
     "description": "レベルエディタ",
     "warning": "",
+    "support" : "TESTING",
     "wiki_url": "",
     "tracker_url": "",
     "category": "Object"
@@ -35,7 +36,7 @@ class TOPBAR_MT_my_menu(bpy.types.Menu):
         # ID指定でサブメニューを追加
         self.layout.menu(TOPBAR_MT_my_menu.bl_idname)
         
-def draw_menu_manual(seif, context):
+def draw_menu_manual(self, context):
     self.layout.operator("wm.url_open_preset",text="Manual", icon='HELP')
     
 #アドオン有効化時コールバック
@@ -49,10 +50,10 @@ def register():
 
 #アドオン無効化時コールバック
 def unregister():
-    bpy.types.TOPBAR_MT_editor_menus.remove(TOPBAR_MT_my_menu.subemnu)
+    bpy.types.TOPBAR_MT_editor_menus.remove(TOPBAR_MT_my_menu.submenu)
     
     for cls in classes:
-        bpy.utils.unreguster_class(cls)
+        bpy.utils.unregister_class(cls)
     print("レベルエディタが無効化されました。")
     
 
