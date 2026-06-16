@@ -89,18 +89,8 @@ class TOPBAR_MT_my_menu(bpy.types.Menu):
         # ID指定でサブメニューを追加
         self.layout.menu(TOPBAR_MT_my_menu.bl_idname)
         
-        
-#Blenderに登録するクラスリスト
-classes=( 
-    MYADDON_OT_stretch_vertex,
-    MYADDON_OT_create_ico_sphere,
-    TOPBAR_MT_my_menu
-)
 
-
-
-
-#Add-On有効化時コールバック
+#アドオン有効化時コールバック
 def register():
     #Blenderにクラスを登録
     for cls in classes:
@@ -109,7 +99,7 @@ def register():
     bpy.types.TOPBAR_MT_editor_menus.append(TOPBAR_MT_my_menu.submenu)
     print("レベルエディタが有効化されました。")
 
-#Add-On無効化時コールバック
+#アドオン無効化時コールバック
 def unregister():
     #メニューから項目を削除
     bpy.types.TOPBAR_MT_editor_menus.remove(TOPBAR_MT_my_menu.submenu)
@@ -117,6 +107,12 @@ def unregister():
     for cls in classes:
         bpy.utils.unregister_class(cls)
     print("レベルエディタが無効化されました。")
+#Blenderに登録するクラスリスト
+classes=( 
+    MYADDON_OT_stretch_vertex,
+    MYADDON_OT_create_ico_sphere,
+    TOPBAR_MT_my_menu
+)
 
 
 # テスト実行用コード
